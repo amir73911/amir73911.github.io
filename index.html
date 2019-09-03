@@ -1,0 +1,437 @@
+
+<!-- -meta.viewport = 'width=1400'--><!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/jquery-form-styler@2.0.2/dist/jquery.formstyler.min.css">
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+		<link rel="stylesheet" href="/css/main.css?v=1567538512367">
+	</head>
+	<body>
+		<section class="hero-slider-wrapper">
+			<div class="content-wrapper">
+				<header class="header">
+					<div class="header__block"><a class="header-logo" href="/"><span class="logo">
+								<svg>
+									<use xlink:href="/images/sprites.svg#logo"></use>
+								</svg></span></a></div>
+					<div class="header__block">
+						<button class="button js-popup-btn">Sign up for Consultation</button>
+					</div>
+					<div class="header__block header__block--growable header__block--row-view"><a class="header__link header__link--active" href="#">Eng</a>
+						<div class="header__divider"></div><a class="header__link" href="#">Ru</a>
+					</div>
+					<div class="header__block header__block--growable header__block--row-view">
+						<!--.header__link.header__link--has-child-->
+						<!--	span Services-->
+						<!--	+svg('arrow').svg-icon-arrow--><a class="header__link js-go-to" href="#sectionServices">Services</a><a class="header__link js-go-to" href="#sectionAbout">About</a><a class="header__link js-go-to" href="#sectionContacts">Contacts</a>
+					</div>
+					<div class="header__block header__block--growable header__block--row-view"><a class="header__link" href="tel:+74951508880">+7 495 150 8880</a>
+						<div class="header__divider"></div><a class="header__link" href="tel:+79161910000">+7 916 191 0000</a>
+					</div>
+				</header>
+				<div class="slider" id="heroSlider" v-if="activeSlide" v-cloak>
+					<div class="slider__item slider-item content-padding" ref="slide">
+						<div class="slider-item__image image-to-right" :style="`background-image: url('${activeSlide.mainImage}');`"></div>
+						<div class="slider-item__content">
+							<h2 class="slider-item__title"><span v-if="activeSlide.titleNormal">{{ activeSlide.titleNormal }}</span><span class="bordered" v-if="activeSlide.titleBordered">{{ activeSlide.titleBordered }}</span></h2>
+							<div class="slider-item__by" v-if="activeSlide.by">{{ activeSlide.by }}</div>
+						</div>
+					</div>
+					<div class="slider__pagination hide-scrollbar" ref="pagination">
+						<div class="placement"><img src="/images/towers.svg">
+							<svg class="svg-icon-slash">
+								<use xlink:href="/images/sprites.svg#slash"></use>
+							</svg><span>Moscow City<br>Impare Tower</span>
+						</div>
+						<div class="slider-pagination-item" v-for="(slide, index) in slides" :key="`hero-pagination_${index}`" :style="`background-image: url('${slide.thumbImage || slide.mainImage}')`" :class="{'slider-pagination-item--active': index === activeSlideNum}" @click="selectSlide(index)">
+							<div class="slider-pagination-item__progress" v-if="index === activeSlideNum" :style="`transform: translateX(-${100 - autoPlayProgress}%)`"></div>
+						</div>
+					</div>
+				</div>
+				<div class="hero-slider-wrapper__label"><span class="text">The Rubin Group</span><span class="border"></span></div>
+			</div>
+		</section>
+		<section class="services" id="sectionServices">
+			<div class="content-wrapper content-padding">
+				<h2 class="section-title"><span>Services</span><span class="logo">
+						<svg>
+							<use xlink:href="/images/sprites.svg#logo"></use>
+						</svg></span></h2>
+				<div class="services__items">
+					<div class="services__item">
+						<div class="services__item-number">01</div>
+						<div class="services__item-title">Plastic surgery</div>
+						<div class="services__image"><img src="/images/services/1.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__item-number">02</div>
+						<div class="services__item-title">Endocrinology</div>
+						<div class="services__image"><img src="/images/services/2.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__item-number">03</div>
+						<div class="services__item-title">Gynecology</div>
+						<div class="services__image"><img src="/images/services/3.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__item-number">04</div>
+						<div class="services__item-title">Cosmetology</div>
+						<div class="services__image"><img src="/images/services/4.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__item-number">05</div>
+						<div class="services__item-title">4-P Medicine</div>
+						<div class="services__image"><img src="/images/services/5.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__item-number">06</div>
+						<div class="services__item-title">WIP Support 24/7</div>
+						<div class="services__image"><img src="/images/services/6.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__item-number">07</div>
+						<div class="services__item-title">Spa Room</div>
+						<div class="services__image"><img src="/images/services/7.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__coming-soon">Coming Soon</div>
+						<div class="services__item-number">08</div>
+						<div class="services__item-title">Medical School</div>
+						<div class="services__image"><img src="/images/services/8.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+					<div class="services__item">
+						<div class="services__coming-soon">Coming Soon</div>
+						<div class="services__item-number">09</div>
+						<div class="services__item-title">TRG Boutique</div>
+						<div class="services__image"><img src="/images/services/9.svg"></div>
+						<div class="services__item-arrow">
+							<svg>
+								<use xlink:href="/images/sprites.svg#arrow-right"></use>
+							</svg>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="about" id="sectionAbout">
+			<div class="content-wrapper content-padding">
+				<h2 class="section-title">About</h2>
+			</div>
+			<div class="about-grid">
+				<div class="text text--left">
+					<p>
+						Наша клиника основана на фундаментальном и всестороннем подходе к
+						проблемам пациентов. Мы придерживаемся, внедряем и развиваем
+						4П-медицину в диагностике, предупреждении и лечении самых разных
+						заболеваний.
+					</p>
+					<p>
+						Составляем комплексный план оперативно-медикаментозного
+						и хирургического лечения для пациента, так же учитываем возможности
+						наших коллег в Америке, Европе и Израиле.
+						Располагаем всем необходимым современным оборудованием.
+						
+					</p>
+				</div>
+				<div class="image image--type-1"><img src="/images/about-1.jpg"></div>
+				<div class="about-grid__divider about-grid__divider--type-1"></div>
+				<div class="image image--type-2"><img src="/images/about-2.jpg"></div>
+				<div class="text text--center">
+					<p>
+						Наши сильные стороны: пластическая хирургия, реконструкция, реабилитация,
+						эндокринология, антивозрастная медицина, anti-age гинекология. Мы ведём
+						реабилитацию  пациентов по протоколам наших американских и израильских
+						партнёров.
+						
+					</p>
+				</div>
+				<div class="image image--type-3"><img src="/images/about-3.jpg"></div>
+				<div class="about-grid__divider about-grid__divider--type-2"></div>
+				<div class="text text--left">
+					<p>
+						Сотрудничаем с самыми проверенными и признанными лабораториями РФ, Германии,
+						США и Израиля, что даёт нам преимущества в точности постановки диагноза и
+						составления чёткого плана лечения. Мы имеем возможность проводить
+						малоинвазивную хирургию по рекомендации Вашего лечащего врача (США, Европа,
+						Израиль) и под его дистанционным наблюдением.
+						
+					</p>
+				</div>
+				<div class="image image--type-4"><img src="/images/about-4.jpg"></div>
+				<div class="about-grid__divider about-grid__divider--type-3"></div>
+				<div class="image image--type-2"><img src="/images/about-5.jpg"></div>
+				<div class="text text--center">
+					<p>
+						На базе клиники мы предлагаем инъекционное лечение и капельницы,
+						восстановительные коктейли, а также противовозрастные  медикаментозные
+						и комплексные методы. После необходимого обследования,
+						врачи нашей клиники, предложат Вам необходимые лекарственые средства,
+						витамины, подберут не только лечение, но и поддерживающую терапию,
+						а также питание.
+						
+					</p>
+				</div>
+				<div class="image image--type-3"><img src="/images/about-6.jpg"></div>
+				<div class="about-grid__divider about-grid__divider--type-1"></div>
+			</div>
+		</section>
+		<section class="content-slider">
+			<div class="slider" id="contentSlider" v-if="activeSlide" v-cloak>
+				<div class="slider__item slider-item" ref="slide">
+					<div class="slider-item__image" :style="`background-image: url('${activeSlide.mainImage}');`"></div>
+					<div class="slider-item__content">
+						<h2 class="slider-item__title"><span v-if="activeSlide.titleNormal">{{ activeSlide.titleNormal }}</span><span class="bordered" v-if="activeSlide.titleBordered">{{ activeSlide.titleBordered }}</span></h2>
+						<div class="slider-item__by" v-if="activeSlide.by">{{ activeSlide.by }}</div>
+					</div>
+				</div>
+				<div class="slider__pagination hide-scrollbar" ref="pagination">
+					<div class="slider-pagination-item" v-for="(slide, index) in slides" :key="`hero-pagination_${index}`" :style="`background-image: url('${slide.thumbImage || slide.mainImage}')`" :class="{'slider-pagination-item--active': index === activeSlideNum}" @click="selectSlide(index)">
+						<div class="slider-pagination-item__progress" v-if="index === activeSlideNum" :style="`transform: translateX(-${100 - autoPlayProgress}%)`"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="contacts" id="sectionContacts">
+			<div class="contacts__column">
+				<div class="placement"><img src="/images/impare-tower.svg">
+					<svg class="svg-icon-slash">
+						<use xlink:href="/images/sprites.svg#slash"></use>
+					</svg><span>Moscow City<br>Impare Tower</span>
+				</div>
+				<div class="contacts__numbers"><a href="tel:+74951508880">+7 495 150 8880</a>
+					<div class="header__divider"></div><a href="tel:+79161910000">+7 916 191 0000</a>
+				</div>
+			</div>
+			<div class="contacts__column">
+				<div class="contacts__work-time">Working Hours: 10 AM — 19 PM</div>
+				<button class="button js-popup-btn"> Sign up for Consultation</button>
+			</div>
+		</section>
+		<section class="map" id="map"></section>
+		<footer class="footer"><a href="#">Terms and Conditions</a><span>© The Rubin Group 2019</span></footer>
+		<div class="popup-outer">
+			<div class="popup popup--form">
+				<button class="close-button">
+					<svg class="svg-icon-x">
+						<use xlink:href="/images/sprites.svg#x"></use>
+					</svg>
+				</button>
+				<div class="popup__inner">
+					<div class="popup__title">Sign up for Consultation</div>
+					<form class="form" id="form">
+						<div class="form__field form__field--expanded">
+							<label class="form__label form__label--required">Full name</label>
+							<input class="form__input" type="text" placeholder="first and last name" required>
+						</div>
+						<div class="form__field">
+							<label class="form__label form__label--required">Full name</label>
+							<select class="form__select">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+								<option>11</option>
+								<option>12</option>
+								<option>13</option>
+								<option>14</option>
+								<option>15</option>
+								<option>16</option>
+								<option>17</option>
+								<option>18</option>
+								<option>19</option>
+								<option>21</option>
+								<option>22</option>
+								<option>23</option>
+								<option>24</option>
+								<option>25</option>
+								<option>26</option>
+								<option>27</option>
+								<option>28</option>
+								<option>29</option>
+								<option>30</option>
+								<option>31</option>
+							</select>
+						</div>
+						<div class="form__field">
+							<label class="form__label form__label--required">Full name</label>
+							<select class="form__select">
+								<option>January</option>
+								<option>February</option>
+								<option>March</option>
+								<option>April</option>
+								<option>May</option>
+								<option>June</option>
+								<option>July</option>
+								<option>August</option>
+								<option>September</option>
+								<option>October</option>
+								<option>November</option>
+								<option>December</option>
+							</select>
+						</div>
+						<div class="form__field">
+							<label class="form__label form__label--required">Full name</label>
+							<select class="form__select">
+								<option>1970</option>
+								<option>1971</option>
+								<option>1972</option>
+								<option>1973</option>
+								<option>1974</option>
+								<option>1975</option>
+								<option>1976</option>
+								<option>1977</option>
+								<option>1978</option>
+								<option>1979</option>
+								<option>1980</option>
+								<option>1981</option>
+								<option>1982</option>
+								<option>1983</option>
+								<option>1984</option>
+								<option>1985</option>
+								<option>1986</option>
+								<option>1987</option>
+								<option>1987</option>
+								<option>1988</option>
+								<option>1989</option>
+								<option>1990</option>
+								<option>1991</option>
+								<option>1992</option>
+								<option>1993</option>
+								<option>1994</option>
+								<option>1995</option>
+								<option>1996</option>
+								<option>1996</option>
+								<option>1997</option>
+								<option>1998</option>
+								<option>1999</option>
+								<option>2000</option>
+								<option>2001</option>
+								<option>2002</option>
+								<option>2003</option>
+								<option>2004</option>
+								<option>2005</option>
+								<option>2006</option>
+								<option>2007</option>
+								<option>2008</option>
+								<option>2009</option>
+							</select>
+						</div>
+						<div class="form__field form__field--medium">
+							<label class="form__label form__label--required">Phone</label>
+							<input class="form__input" type="tel" placeholder="enter your phone" required>
+						</div>
+						<div class="form__field form__field--medium">
+							<label class="form__label form__label--required">Email</label>
+							<input class="form__input" type="email" placeholder="enter your email" required>
+						</div>
+						<div class="form__field form__field--medium">
+							<label class="form__label form__label--required">Specialist</label>
+							<select class="form__select">
+								<option>Plastic surgeon</option>
+								<option>Surgeon</option>
+								<option>Doctor Beautician</option>
+								<option>Endocrinologist</option>
+								<option>Gynecologist</option>
+								<option>Phlebologist</option>
+								<option>Ultrasound scan</option>
+								<option>Masseur</option>
+							</select>
+						</div>
+						<div class="form__field form__field--expanded">
+							<div class="datetimepicker" id="datetimepicker" v-cloak>
+								<input class="is-hidden" id="datepicker" type="text">
+								<div class="form__expander">
+									<label class="form__label form__label--required">time of appointment</label>
+									<input class="form__input form__input--transparent" :value="resultDateTime" placeholder="Select Date and Time" required readonly>
+								</div>
+								<div class="datetimepicker__container">
+									<div class="datepicker-container"></div>
+									<div class="timepicker-container" :key="updateCounter">
+										<div class="date">{{ selectedDate }}</div>
+										<div class="items">
+											<div class="item" v-for="time in times" @click="setTime(time)" :class="{'selected': time === selectedTime}">{{ time }}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form__field form__field--expanded">
+							<label class="form__label">Comment</label>
+							<textarea class="form__input" placeholder="write comment"></textarea>
+						</div>
+						<div class="form__field form__field--small">
+							<input class="button js-send-form-btn" type="submit" value="Send">
+						</div>
+						<div class="form__field form__field--medium-2"><span class="form__caption">If you come to us for the first time, take your passport with you to register</span></div>
+					</form>
+				</div>
+			</div>
+			<div class="popup popup--result">
+				<button class="close-button">
+					<svg class="svg-icon-x">
+						<use xlink:href="/images/sprites.svg#x"></use>
+					</svg>
+				</button>
+				<div class="popup__inner"><img src="/images/letter.svg">
+					<div class="popup__title">Application sent</div>
+					<p>Thank you for your application, our representative will contact you shortly</p>
+				</div>
+			</div>
+		</div>
+		<script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+		<script src="/js/vendor.js?v=1567538512367"></script>
+		<script src="/js/main.js?v=1567538512367"></script>
+		<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDdjV4iuqfeNQaw5NnDd__IoBVx5TH9_E4&amp;callback=initMap" async defer></script>
+		<script src="//cdn.jsdelivr.net/npm/jquery-form-styler@2.0.2/dist/jquery.formstyler.min.js"></script>
+	</body>
+</html>
