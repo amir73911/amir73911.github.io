@@ -426,6 +426,9 @@ body {
 .overflow-hidden {
   overflow: hidden; }
 
+.default-gap {
+  margin-bottom: 20px; }
+
 .header {
   border-top: 1px solid rgba(54, 54, 54, 0.12);
   border-bottom: 1px solid rgba(54, 54, 54, 0.12);
@@ -731,7 +734,7 @@ body {
   .slider-item__content {
     max-width: 500px;
     position: relative;
-    margin-top: -60px; }
+    margin-top: -105px; }
   .slider-item__title {
     font-size: 60px;
     line-height: 75px;
@@ -830,7 +833,7 @@ body {
   transition: opacity 0.3s, transform 0.3s, max-height 0.3s, -webkit-transform 0.3s, -moz-transform 0.3s, -o-transform 0.3s; }
   .popup--form {
     width: 680px;
-    padding: 90px 100px 100px; }
+    padding: 90px 99px 100px; }
     .popup--form:before {
       content: "";
       display: block;
@@ -986,9 +989,21 @@ body {
     resize: vertical;
     padding: 0; }
     .form .jq-selectbox.opened, .form .jq-selectbox:focus, .form__input.opened, .form__input:focus {
-      border-bottom-color: #363636; }
+      border-bottom-color: #aba498; }
     .form .jq-selectbox--transparent, .form__input--transparent {
       border-bottom: none; }
+    .form .jq-selectbox::-webkit-input-placeholder, .form__input::-webkit-input-placeholder {
+      color: rgba(54, 54, 54, 0.5); }
+    .form .jq-selectbox:-moz-placeholder, .form__input:-moz-placeholder {
+      color: rgba(54, 54, 54, 0.5); }
+    .form .jq-selectbox::-moz-placeholder, .form__input::-moz-placeholder {
+      color: rgba(54, 54, 54, 0.5); }
+    .form .jq-selectbox:-ms-input-placeholder, .form__input:-ms-input-placeholder {
+      color: rgba(54, 54, 54, 0.5); }
+    .form .jq-selectbox::-ms-input-placeholder, .form__input::-ms-input-placeholder {
+      color: rgba(54, 54, 54, 0.5); }
+    .form .jq-selectbox::placeholder, .form__input::placeholder {
+      color: rgba(54, 54, 54, 0.5); }
   .form__select {
     width: 100%;
     cursor: pointer; }
@@ -1062,8 +1077,11 @@ body {
         font-size: inherit; }
   .form__caption {
     font-size: 15px;
+    line-height: 25px;
     opacity: 0.5;
-    padding-top: 12px; }
+    padding-top: 5px; }
+  .form .button {
+    width: 140px; }
 
 .datetimepicker__container {
   height: 280px;
