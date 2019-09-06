@@ -185,7 +185,13 @@ new Vue({
         container: document.querySelector('.datepicker-container'),
         bound: false,
         disableDayFn: self.isDayDisabled,
-        onSelect: self.onDatepickerSelect
+        onSelect: self.onDatepickerSelect,
+        firstDay: 1,
+        i18n: {
+          months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+          weekdays: ['Воскресение', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+          weekdaysShort: ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
+        }
       }); // Hack
 
       this.$nextTick(function () {
