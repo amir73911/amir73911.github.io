@@ -1,5 +1,4 @@
-
-<!-- -meta.viewport = 'width=1400'--><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">
@@ -7,23 +6,28 @@
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/jquery-form-styler@2.0.2/dist/jquery.formstyler.min.css">
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-		<link rel="stylesheet" href="/css/main.css?v=1567538512367">
+		<link rel="stylesheet" href="//api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css">
+		<link rel="stylesheet" href="/css/main.css?v=1567751889101">
 	</head>
 	<body>
 		<section class="hero-slider-wrapper">
 			<div class="content-wrapper">
 				<header class="header">
-					<div class="header__block"><a class="header-logo" href="/"><span class="logo">
+					<div class="header__block">
+						<div class="line line--on-right line--on-block-bottom" style="height: 100px;"></div><a class="header-logo" href="/"><span class="logo">
 								<svg>
 									<use xlink:href="/images/sprites.svg#logo"></use>
-								</svg></span></a></div>
+								</svg></span></a>
+					</div>
 					<div class="header__block">
 						<button class="button js-popup-btn">Sign up for Consultation</button>
 					</div>
-					<div class="header__block header__block--growable header__block--row-view"><a class="header__link header__link--active" href="#">Eng</a>
+					<div class="header__block header__block--growable header__block--row-view">
+						<div class="line line--on-right line--on-block-bottom" style="height: 173px;"></div><a class="header__link header__link--active" href="#">Eng</a>
 						<div class="header__divider"></div><a class="header__link" href="#">Ru</a>
 					</div>
 					<div class="header__block header__block--growable header__block--row-view">
+						<div class="line line--on-right line--on-block-bottom" style="height: 620px;"></div>
 						<!--.header__link.header__link--has-child-->
 						<!--	span Services-->
 						<!--	+svg('arrow').svg-icon-arrow--><a class="header__link js-go-to" href="#sectionServices">Services</a><a class="header__link js-go-to" href="#sectionAbout">About</a><a class="header__link js-go-to" href="#sectionContacts">Contacts</a>
@@ -47,7 +51,10 @@
 							</svg><span>Moscow City<br>Impare Tower</span>
 						</div>
 						<div class="slider-pagination-item" v-for="(slide, index) in slides" :key="`hero-pagination_${index}`" :style="`background-image: url('${slide.thumbImage || slide.mainImage}')`" :class="{'slider-pagination-item--active': index === activeSlideNum}" @click="selectSlide(index)">
-							<div class="slider-pagination-item__progress" v-if="index === activeSlideNum" :style="`transform: translateX(-${100 - autoPlayProgress}%)`"></div>
+							<div class="slider-pagination-item__number">{{ getSlidePreNumber(index) }}</div>
+							<div class="slider-pagination-item__inner">
+								<div class="slider-pagination-item__progress" v-if="index === activeSlideNum" :style="`transform: translateX(-${100 - autoPlayProgress}%)`"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -56,6 +63,9 @@
 		</section>
 		<section class="services" id="sectionServices">
 			<div class="content-wrapper content-padding">
+				<div class="line line--on-right line--on-block-top line--color-white" style="height: 140px;"></div>
+				<div class="line line--on-block-top line--color-white _line-content" style="height: 140px;"></div>
+				<div class="line line--on-left line--on-block-top line--color-white" style="height: 100%;"></div>
 				<h2 class="section-title"><span>Services</span><span class="logo">
 						<svg>
 							<use xlink:href="/images/sprites.svg#logo"></use>
@@ -157,7 +167,11 @@
 			</div>
 		</section>
 		<section class="about" id="sectionAbout">
-			<div class="content-wrapper content-padding">
+			<div class="content-wrapper content-padding overflow-hidden">
+				<div class="line line--on-block-top _line-content-1" style="height: 1010px;"></div>
+				<div class="line line--on-block-top _line-content-2" style="height: 80px;"></div>
+				<div class="circle" style="top: -495px; left: 50%; width: 1433px; height: 1433px;"></div>
+				<!--.circle(style="top: 50%; right: -236px; width: 1433px; height: 1433px;")-->
 				<h2 class="section-title">About</h2>
 			</div>
 			<div class="about-grid">
@@ -217,6 +231,10 @@
 				<div class="image image--type-3"><img src="/images/about-6.jpg"></div>
 				<div class="about-grid__divider about-grid__divider--type-1"></div>
 			</div>
+			<div class="content-wrapper">
+				<div class="line line--on-block-bottom-to-top _line-content-3" style="height: 80px;"></div>
+				<div class="line line--on-block-bottom-to-top _line-content-4" style="height: 80px;"></div>
+			</div>
 		</section>
 		<section class="content-slider">
 			<div class="slider" id="contentSlider" v-if="activeSlide" v-cloak>
@@ -229,7 +247,9 @@
 				</div>
 				<div class="slider__pagination hide-scrollbar" ref="pagination">
 					<div class="slider-pagination-item" v-for="(slide, index) in slides" :key="`hero-pagination_${index}`" :style="`background-image: url('${slide.thumbImage || slide.mainImage}')`" :class="{'slider-pagination-item--active': index === activeSlideNum}" @click="selectSlide(index)">
-						<div class="slider-pagination-item__progress" v-if="index === activeSlideNum" :style="`transform: translateX(-${100 - autoPlayProgress}%)`"></div>
+						<div class="slider-pagination-item__inner">
+							<div class="slider-pagination-item__progress" v-if="index === activeSlideNum" :style="`transform: translateX(-${100 - autoPlayProgress}%)`"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -252,7 +272,7 @@
 		</section>
 		<section class="map" id="map"></section>
 		<footer class="footer"><a href="#">Terms and Conditions</a><span>© The Rubin Group 2019</span></footer>
-		<div class="popup-outer">
+		<div class="popup-outer hide-scrollbar">
 			<div class="popup popup--form">
 				<button class="close-button">
 					<svg class="svg-icon-x">
@@ -391,13 +411,13 @@
 								<input class="is-hidden" id="datepicker" type="text">
 								<div class="form__expander">
 									<label class="form__label form__label--required">time of appointment</label>
-									<input class="form__input form__input--transparent" :value="resultDateTime" placeholder="Select Date and Time" required readonly>
+									<input class="form__input form__input--transparent" :value="resultDateTime" placeholder="Choose preferred time" required readonly>
 								</div>
 								<div class="datetimepicker__container">
 									<div class="datepicker-container"></div>
 									<div class="timepicker-container" :key="updateCounter">
 										<div class="date">{{ selectedDate }}</div>
-										<div class="items">
+										<div class="items hide-scrollbar">
 											<div class="item" v-for="time in times" @click="setTime(time)" :class="{'selected': time === selectedTime}">{{ time }}</div>
 										</div>
 									</div>
@@ -429,9 +449,9 @@
 		</div>
 		<script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-		<script src="/js/vendor.js?v=1567538512367"></script>
-		<script src="/js/main.js?v=1567538512367"></script>
-		<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDdjV4iuqfeNQaw5NnDd__IoBVx5TH9_E4&amp;callback=initMap" async defer></script>
+		<script src="//api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"></script>
+		<script src="/js/vendor.js?v=1567751889103"></script>
+		<script src="/js/main.js?v=1567751889103"></script>
 		<script src="//cdn.jsdelivr.net/npm/jquery-form-styler@2.0.2/dist/jquery.formstyler.min.js"></script>
 	</body>
 </html>
