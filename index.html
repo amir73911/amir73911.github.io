@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/jquery-form-styler@2.0.2/dist/jquery.formstyler.min.css">
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 		<link rel="stylesheet" href="//api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css">
-		<link rel="stylesheet" href="/css/main.css?v=1567753940125">
+		<link rel="stylesheet" href="/css/main.css?v=1567766988646">
 	</head>
 	<body>
 		<section class="hero-slider-wrapper">
@@ -40,7 +40,7 @@
 					<div class="slider__item slider-item content-padding" ref="slide">
 						<div class="slider-item__image image-to-right" :style="`background-image: url('${activeSlide.mainImage}');`"></div>
 						<div class="slider-item__content">
-							<h2 class="slider-item__title"><span v-if="activeSlide.titleNormal">{{ activeSlide.titleNormal }}</span><span class="bordered" v-if="activeSlide.titleBordered">{{ activeSlide.titleBordered }}</span></h2>
+							<h2 class="slider-item__title"><span v-if="activeSlide.titleNormal" v-html="activeSlide.titleNormal"></span><span class="bordered" v-if="activeSlide.titleBordered">{{ activeSlide.titleBordered }}</span></h2>
 							<div class="slider-item__by" v-if="activeSlide.by">{{ activeSlide.by }}</div>
 						</div>
 					</div>
@@ -450,8 +450,8 @@
 		<script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="//cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
 		<script src="//api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"></script>
-		<script src="/js/vendor.js?v=1567753940125"></script>
-		<script src="/js/main.js?v=1567753940125"></script>
+		<script src="/js/vendor.js?v=1567766988647"></script>
+		<script src="/js/main.js?v=1567766988647"></script>
 		<script src="//cdn.jsdelivr.net/npm/jquery-form-styler@2.0.2/dist/jquery.formstyler.min.js"></script>
 	</body>
 </html>

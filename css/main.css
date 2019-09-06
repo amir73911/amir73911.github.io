@@ -729,7 +729,7 @@ body {
               background-size: auto 100%;
       background-position: center right; }
   .slider-item__content {
-    max-width: 450px;
+    max-width: 500px;
     position: relative;
     margin-top: -60px; }
   .slider-item__title {

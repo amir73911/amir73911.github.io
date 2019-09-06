@@ -356,18 +356,17 @@ $popupCloseButtons.forEach(function (item) {
 /***/ (function(module, exports) {
 
 var heroSliderData = [{
-  titleNormal: 'We value your health',
-  titleBordered: 'most of all',
-  by: 'Sincerely, Zlata Rubin',
+  titleNormal: 'Лучшие доверяют нам самое ценное&nbsp;&mdash; Здоровье!',
+  by: 'С уважением, Злата Рубин',
   mainImage: '/images/hero-slider-1.png',
   thumbImage: '/images/hero-slider-preview-1.png'
 }, {
-  titleNormal: 'Postoperative  recovery and  counseling',
+  titleNormal: 'Красота и&nbsp;молодость в&nbsp;гармонии с&nbsp;природой',
   by: 'The Rubin Group',
   mainImage: '/images/hero-slider-2.png',
   thumbImage: '/images/hero-slider-preview-2.png'
 }, {
-  titleNormal: 'Innovative  approaches to medicine',
+  titleNormal: 'Премиум сервис <br> 24/7',
   by: 'The Rubin Group',
   mainImage: '/images/hero-slider-3.png',
   thumbImage: '/images/hero-slider-preview-3.png'
@@ -388,7 +387,7 @@ function sliderCreate(elId) {
       autoPlayProgress: 0,
       animation: false,
       autoplayInterval: null,
-      autoplay: true
+      autoplay: false
     },
     beforeCreate: function beforeCreate() {
       this.autoplayMaxTime = 5000;
