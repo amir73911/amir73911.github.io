@@ -336,6 +336,12 @@ template {
      -moz-box-sizing: inherit;
           box-sizing: inherit; }
 
+*::-moz-selection {
+  background: rgba(237, 107, 77, 0.2); }
+
+*::selection {
+  background: rgba(237, 107, 77, 0.2); }
+
 html {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -359,7 +365,8 @@ body {
   line-height: 42px;
   margin: 0;
   cursor: default;
-  font-weight: 400; }
+  font-weight: 400;
+  position: relative; }
 
 [v-cloak] {
   display: none; }
@@ -381,22 +388,21 @@ body {
     bottom: 0; }
   .line--color-white {
     background: #fff; }
-  .line--color-white {
+  .line--color-blue {
     background: rgba(86, 110, 142, 0.15); }
 
 .circle {
+  pointer-events: none;
   -webkit-border-radius: 50%;
      -moz-border-radius: 50%;
           border-radius: 50%;
   position: absolute;
-  -webkit-transform: translate(-50%, -50%);
-     -moz-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-       -o-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  border: 1px solid rgba(54, 54, 54, 0.12); }
+  border: 1px solid rgba(54, 54, 54, 0.12);
+  z-index: 0; }
   .circle--color-blue {
     border-color: rgba(86, 110, 142, 0.15); }
+  .circle--color-white {
+    border-color: #fff; }
 
 .is-hidden {
   display: none !important; }
@@ -422,6 +428,12 @@ body {
   .hide-scrollbar::-webkit-scrollbar {
     width: 0 !important;
     height: 0 !important; }
+
+.styled-scrollbar::-webkit-scrollbar, .form .jq-selectbox__dropdown ul::-webkit-scrollbar {
+  width: 5px; }
+
+.styled-scrollbar::-webkit-scrollbar-thumb, .form .jq-selectbox__dropdown ul::-webkit-scrollbar-thumb {
+  background-color: #E4E2DE; }
 
 .overflow-hidden {
   overflow: hidden; }
@@ -477,8 +489,9 @@ body {
     display: block;
     font-size: 15px;
     line-height: 19px;
-    padding: 4px 14px;
-    position: relative; }
+    padding: 4px 17px;
+    position: relative;
+    white-space: nowrap; }
     .header__link:hover {
       color: #ed6b4d; }
     .header__link:before {
@@ -558,6 +571,15 @@ body {
     left: 0;
     height: 120px;
     max-width: 100%; }
+    .slider__pagination--wide {
+      width: 100%; }
+      .slider__pagination--wide .slider-pagination-item {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+           -moz-box-flex: 1;
+            -ms-flex-positive: 1;
+                flex-grow: 1;
+        width: auto; }
     .slider__pagination .slider-pagination-item {
       width: 180px;
       height: 120px;
@@ -653,7 +675,7 @@ body {
       font-size: 15px;
       line-height: 25px;
       color: #fff;
-      padding: 20px 47px;
+      padding: 20px 35px;
       position: relative;
       -webkit-flex-shrink: 0;
           -ms-flex-negative: 0;
@@ -676,8 +698,8 @@ body {
       .slider__pagination .placement .svg-icon-slash {
         width: 40px;
         height: 40px;
-        margin-left: 29px;
-        margin-right: 27px; }
+        margin-left: 22px;
+        margin-right: 20px; }
       .slider__pagination .placement span {
         cursor: default;
         -webkit-user-select: none;
@@ -832,7 +854,7 @@ body {
   transition: opacity 0.3s, transform 0.3s, max-height 0.3s;
   transition: opacity 0.3s, transform 0.3s, max-height 0.3s, -webkit-transform 0.3s, -moz-transform 0.3s, -o-transform 0.3s; }
   .popup--form {
-    width: 680px;
+    width: 710px;
     padding: 90px 99px 100px; }
     .popup--form:before {
       content: "";
@@ -872,7 +894,7 @@ body {
       z-index: 1; }
   .popup--result {
     background: #fff;
-    width: 500px;
+    width: 560px;
     padding: 60px 80px;
     text-align: center; }
     .popup--result .popup__title {
@@ -957,7 +979,8 @@ body {
     font-size: 12px;
     position: relative;
     margin-bottom: 20px;
-    white-space: nowrap; }
+    white-space: nowrap;
+    letter-spacing: 1px; }
     .form__label--required:before {
       content: "";
       display: block;
@@ -988,7 +1011,7 @@ body {
     outline: none;
     resize: vertical;
     padding: 0; }
-    .form .jq-selectbox.opened, .form .jq-selectbox:focus, .form__input.opened, .form__input:focus {
+    .form .jq-selectbox.opened, .form .jq-selectbox.focused, .form .jq-selectbox:focus, .form__input.opened, .form__input.focused, .form__input:focus {
       border-bottom-color: #aba498; }
     .form .jq-selectbox--transparent, .form__input--transparent {
       border-bottom: none; }
@@ -1078,10 +1101,26 @@ body {
   .form__caption {
     font-size: 15px;
     line-height: 25px;
+    line-height: 25px;
     opacity: 0.5;
-    padding-top: 5px; }
-  .form .button {
-    width: 140px; }
+    padding-left: 50px; }
+  .form__footer {
+    padding-top: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .form__footer .button {
+      -webkit-flex-shrink: 0;
+          -ms-flex-negative: 0;
+              flex-shrink: 0;
+      min-width: 140px; }
 
 .datetimepicker__container {
   height: 280px;
@@ -1107,7 +1146,7 @@ body {
           flex-shrink: 0;
   padding-left: 35px;
   padding-right: 20px;
-  width: 190px;
+  width: 210px;
   text-align: center;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1120,16 +1159,25 @@ body {
      -moz-box-orient: vertical;
      -moz-box-direction: normal;
       -ms-flex-direction: column;
-          flex-direction: column; }
+          flex-direction: column;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  -moz-transition: opacity 0.3s;
+  transition: opacity 0.3s; }
+  .datetimepicker .timepicker-container.showed {
+    opacity: 1; }
   .datetimepicker .timepicker-container .date {
     font-size: 13px;
     font-weight: 500;
     height: 40px;
     line-height: 40px;
-    margin-bottom: 15px; }
+    margin-bottom: 15px;
+    padding-right: 20px; }
   .datetimepicker .timepicker-container .items {
     overflow: hidden;
-    overflow-y: auto; }
+    overflow-y: auto;
+    padding-right: 20px; }
   .datetimepicker .timepicker-container .item {
     width: 100%;
     height: 40px;
@@ -1147,7 +1195,8 @@ body {
     .datetimepicker .timepicker-container .item:not(:last-child) {
       margin-bottom: 15px; }
     .datetimepicker .timepicker-container .item:hover {
-      background: rgba(54, 54, 54, 0.1); }
+      border-color: #ed6b4d;
+      background: rgba(237, 107, 77, 0.2); }
     .datetimepicker .timepicker-container .item.selected {
       border-color: #ed6b4d;
       background: #ed6b4d;
@@ -1215,6 +1264,8 @@ body {
   -o-transition: color 0.3s, background 0.3s;
   -moz-transition: color 0.3s, background 0.3s;
   transition: color 0.3s, background 0.3s; }
+  .pika-button:focus {
+    background: red; }
   .pika-button:hover {
     background: rgba(237, 107, 77, 0.2);
     color: inherit; }
@@ -1268,7 +1319,7 @@ body {
             align-items: center;
     position: absolute;
     top: 0;
-    right: -6px;
+    right: -7px;
     height: 100%;
     padding-top: 60px; }
     .hero-slider-wrapper__label .border {
@@ -1309,7 +1360,8 @@ body {
     z-index: 2; }
 
 .services {
-  background: #F5EEE4; }
+  background: #F5EEE4;
+  overflow: hidden; }
   .services__items {
     display: grid;
     grid-template-columns: repeat(3, 420px);
@@ -1401,7 +1453,10 @@ body {
   font-size: 16px;
   line-height: 30px;
   font-weight: 400;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
+  .about img {
+    position: relative; }
   .about .section-title {
     padding-top: 106px;
     padding-bottom: 72px; }
@@ -1499,9 +1554,9 @@ body {
         -ms-flex-direction: column;
             flex-direction: column; }
     .contacts__column:first-child {
-      background: #F5EEE4; }
+      background: #F5EEE4 url("/images/contacts-bg-1.svg") no-repeat; }
     .contacts__column:last-child {
-      background: #EDE3D4; }
+      background: #EDE3D4 url("/images/contacts-bg-2.svg") no-repeat; }
   .contacts__numbers {
     display: -webkit-box;
     display: -webkit-flex;

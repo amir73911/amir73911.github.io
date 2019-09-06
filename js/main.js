@@ -169,7 +169,8 @@ new Vue({
     updateCounter: 0,
     times: [],
     selectedDate: null,
-    selectedTime: null
+    selectedTime: null,
+    showSelectTimeBlock: false
   },
   methods: {
     setTime: function setTime(time) {
@@ -196,6 +197,12 @@ new Vue({
     },
     onDatepickerSelect: function onDatepickerSelect(day) {
       this.selectedDate = dayjs(day).format('DD.MM.YYYY');
+
+      if (this.selectedTime) {
+        this.selectedTime = null;
+      }
+
+      this.showSelectTimeBlock = true;
     },
     getTimes: function getTimes() {
       this.times = ['10:40', '11:40', '15:20', '16:50', '18:00'];
@@ -204,7 +211,7 @@ new Vue({
   computed: {
     resultDateTime: function resultDateTime() {
       if (this.selectedDate && this.selectedTime) {
-        return "Moscow Time (".concat(this.selectedDate, " ").concat(this.selectedTime, ")");
+        return "".concat(this.selectedDate, " ").concat(this.selectedTime, " (\u041C\u043E\u0441\u043A\u043E\u0432\u0441\u043A\u043E\u0435 \u0432\u0440\u0435\u043C\u044F)");
       } else {
         return null;
       }
@@ -306,10 +313,22 @@ var $popupOuter = document.querySelector('.popup-outer');
 var $popup = document.querySelector('.popup--form');
 var $popupResult = document.querySelector('.popup--result');
 var $popupCloseButtons = document.querySelectorAll('.popup .close-button');
+var $firstFocusInput = document.querySelector('input[autofocus]');
+
+function disableTabs() {
+  var $pikaButtons = document.querySelectorAll('.pika-lendar button');
+  $pikaButtons.forEach(function (item) {
+    item.setAttribute('tabindex', '-1');
+  });
+}
 
 window.showPopup = function () {
   $popupOuter.classList.add('showed');
   $popup.classList.add('showed');
+  setTimeout(function () {
+    $firstFocusInput.focus();
+    disableTabs();
+  }, 100);
 };
 
 window.showResultPopup = function () {
@@ -372,9 +391,21 @@ var heroSliderData = [{
   thumbImage: '/images/hero-slider-preview-3.png'
 }];
 var contentSliderData = [{
-  mainImage: 'http://placekitten.com/300'
+  mainImage: '/images/gallery/3.jpg'
 }, {
-  mainImage: 'http://placekitten.com/350'
+  mainImage: '/images/gallery/1.jpg'
+}, {
+  mainImage: '/images/gallery/2.jpg'
+}, {
+  mainImage: '/images/gallery/5.jpg'
+}, {
+  mainImage: '/images/gallery/7.jpg'
+}, {
+  mainImage: '/images/gallery/6.jpg'
+}, {
+  mainImage: '/images/gallery/8.jpg'
+}, {
+  mainImage: '/images/gallery/9.jpg'
 }];
 
 function sliderCreate(elId) {
@@ -387,7 +418,7 @@ function sliderCreate(elId) {
       autoPlayProgress: 0,
       animation: false,
       autoplayInterval: null,
-      autoplay: false
+      autoplay: true
     },
     beforeCreate: function beforeCreate() {
       this.autoplayMaxTime = 5000;
