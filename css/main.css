@@ -782,6 +782,10 @@ body {
       top: calc(50% - 1px);
       left: -40px; }
 
+.content-slider .slider-item {
+  height: 900px;
+}
+
 @-webkit-keyframes changingSlide {
   0% {
     opacity: 1; }
